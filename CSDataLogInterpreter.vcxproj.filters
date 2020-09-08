@@ -18,5 +18,16 @@
     <ClCompile Include="CSDataLogInterpreter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestAutomaton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Automaton.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestAutomaton.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -140,6 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CSDataLogInterpreter.cpp" />
+    <ClCompile Include="TestAutomaton.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Automaton.h" />
+    <ClInclude Include="TestAutomaton.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
