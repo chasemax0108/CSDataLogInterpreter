@@ -2,7 +2,7 @@
 #include <string>
 
 #include "Automaton.h"
-#include "TestAutomaton.h"
+#include "AutoList.h"
 #include "TokenType.h"
 #include "Token.h"
 
@@ -18,29 +18,19 @@ using namespace std;
 
 int main()
 {
-    TestAutomaton myAuto;
-    TokenType type = COMMA;
+    CommaAutomaton myAuto;
     string value = "";
     int line = 0;
-    Token myToken(COMMA, "", 0);
+    Token myToken;
     
     cout << "Welcome to the testing site!" << endl;
     for (int i = 0; i < 5; i++) {
         cout << "Enter a value" << endl;
         getline(cin, value);
-        myToken.setType(type);
-        myToken.setValue(value);
-        myToken.setLine(line);
+        cout << "Automaton.Read = " << myAuto.Read(value) << endl;
+        myToken = myAuto.CreateToken(value, line);
+        cout << "Token created: " << myToken.stringedToken() << endl;
         line++;
-        cout << "Here's your token: " << myToken.stringedToken() << endl;
-        /*
-        if (myAuto.Read(input) == 0) {
-            cout << "That doesn't match the auto!" << endl;
-        }
-        else {
-            cout << "Good job! You've figured it out!" << endl;
-        }
-        */
     }
     
 }

@@ -15,6 +15,11 @@ private:
 	"MULTIPLY", "ADD", "SCHEMES", "FACTS", "RULES", "QUERIES", "ID", "STRING", "COMMENT", "UNDEFINED", "ENDOFFILE"};
 
 public:
+	Token() {
+		type = COMMA;
+		value = "";
+		line = 0;
+	}
 
 	Token(TokenType t, std::string v, int l) {
 		type = t;

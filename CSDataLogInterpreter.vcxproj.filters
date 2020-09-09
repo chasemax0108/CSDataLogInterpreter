@@ -24,6 +24,9 @@
     <ClCompile Include="Token.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CommaAutomaton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Automaton.h">
@@ -36,6 +39,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="TokenType.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommaAutomaton.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoList.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
