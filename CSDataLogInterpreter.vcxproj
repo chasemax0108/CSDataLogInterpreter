@@ -141,10 +141,13 @@
   <ItemGroup>
     <ClCompile Include="CSDataLogInterpreter.cpp" />
     <ClCompile Include="TestAutomaton.cpp" />
+    <ClCompile Include="Token.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Automaton.h" />
     <ClInclude Include="TestAutomaton.h" />
+    <ClInclude Include="Token.h" />
+    <ClInclude Include="TokenType.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

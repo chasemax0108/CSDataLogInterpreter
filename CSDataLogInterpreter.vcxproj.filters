@@ -21,12 +21,21 @@
     <ClCompile Include="TestAutomaton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Token.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Automaton.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="TestAutomaton.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Token.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TokenType.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
