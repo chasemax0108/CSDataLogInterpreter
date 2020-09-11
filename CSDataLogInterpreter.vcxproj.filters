@@ -18,21 +18,24 @@
     <ClCompile Include="CSDataLogInterpreter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestAutomaton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Token.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CommaAutomaton.cpp">
+    <ClCompile Include="SSAutomaton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MSAutomaton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StringAutomaton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LineCommentAutomaton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Automaton.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestAutomaton.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Token.h">
@@ -41,11 +44,25 @@
     <ClInclude Include="TokenType.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="CommaAutomaton.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="AutoList.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="SSAutomaton.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MSAutomaton.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StringAutomaton.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LineCommentAutomaton.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="input.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

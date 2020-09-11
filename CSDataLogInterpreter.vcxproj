@@ -139,18 +139,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CommaAutomaton.cpp" />
     <ClCompile Include="CSDataLogInterpreter.cpp" />
-    <ClCompile Include="TestAutomaton.cpp" />
+    <ClCompile Include="LineCommentAutomaton.cpp" />
+    <ClCompile Include="SSAutomaton.cpp" />
+    <ClCompile Include="MSAutomaton.cpp" />
+    <ClCompile Include="StringAutomaton.cpp" />
     <ClCompile Include="Token.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoList.h" />
     <ClInclude Include="Automaton.h" />
-    <ClInclude Include="CommaAutomaton.h" />
-    <ClInclude Include="TestAutomaton.h" />
+    <ClInclude Include="LineCommentAutomaton.h" />
+    <ClInclude Include="MSAutomaton.h" />
+    <ClInclude Include="SSAutomaton.h" />
+    <ClInclude Include="StringAutomaton.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="TokenType.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="input.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

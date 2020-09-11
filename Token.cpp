@@ -9,7 +9,7 @@ string Token::stringedToken()
 {
 	string output = "";
 	string stringedType = "";
-	stringedType = tokenTypes[type];
+	stringedType = TokenStrings[type];
 	output = "(" + stringedType + ",\"" + value + "\"," + to_string(line) + ")";
 	return output;
 }

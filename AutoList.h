@@ -1,8 +1,10 @@
 #ifndef AUTOLIST_H
 #define AUTOLIST_H
 
-#include "CommaAutomaton.h"
-#include "TestAutomaton.h"
+#include "SSAutomaton.h"
+#include "MSAutomaton.h"
+#include "StringAutomaton.h"
+#include "LineCommentAutomaton.h"
 
 #endif // !AUTOLIST_H
 
