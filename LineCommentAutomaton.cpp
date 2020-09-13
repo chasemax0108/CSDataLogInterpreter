@@ -22,7 +22,6 @@ int LineCommentAutomaton::Read(const std::string& input) {
 }
 
 Token LineCommentAutomaton::CreateToken(std::string input, int lineNumber) {
-	int state = 0;
 	string value = "";
 	for (int i = 0; i < input.length(); i++) {
 		if (input[i] == '\n') break;

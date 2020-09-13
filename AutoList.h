@@ -5,6 +5,8 @@
 #include "MSAutomaton.h"
 #include "StringAutomaton.h"
 #include "LineCommentAutomaton.h"
+#include "BlockCommentAutomaton.h"
+#include "IDAutomaton.h"
 
 #endif // !AUTOLIST_H
 

@@ -12,7 +12,7 @@ using namespace std;
 int main()
 {
     ifstream inFile("input.txt");
-    LineCommentAutomaton myAuto;
+    IDAutomaton myAuto;
     string value = "";
     int line = 0;
     Token myToken;

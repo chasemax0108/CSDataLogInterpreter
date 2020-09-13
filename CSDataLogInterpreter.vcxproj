@@ -139,7 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlockCommentAutomaton.cpp" />
     <ClCompile Include="CSDataLogInterpreter.cpp" />
+    <ClCompile Include="IDAutomaton.cpp" />
     <ClCompile Include="LineCommentAutomaton.cpp" />
     <ClCompile Include="SSAutomaton.cpp" />
     <ClCompile Include="MSAutomaton.cpp" />
@@ -149,6 +151,8 @@
   <ItemGroup>
     <ClInclude Include="AutoList.h" />
     <ClInclude Include="Automaton.h" />
+    <ClInclude Include="BlockCommentAutomaton.h" />
+    <ClInclude Include="IDAutomaton.h" />
     <ClInclude Include="LineCommentAutomaton.h" />
     <ClInclude Include="MSAutomaton.h" />
     <ClInclude Include="SSAutomaton.h" />
