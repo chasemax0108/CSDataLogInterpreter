@@ -1,47 +1,90 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 
 #include "Automaton.h"
 #include "AutoList.h"
 #include "TokenType.h"
 #include "Token.h"
+#include "Lexer.h"
 
 using namespace std;
 
-int main()
-{
-    ifstream inFile("input.txt");
-    IDAutomaton myAuto;
-    string value = "";
-    int line = 0;
-    Token myToken;
-    
-    cout << "Welcome to the testing site!" << endl;
-    /*while (inFile) {
-        getline(inFile, value);
-        cout << "Automaton.Read = " << myAuto.Read(value) << endl;
-        if (myAuto.Read(value) != 0) {
-            myToken = myAuto.CreateToken(value, line);
-            cout << "Token created: " << myToken.stringedToken() << endl;
-        }
-        line++;
-    }*/
-    
-    while (inFile) {
-        if (!inFile.eof()) {
-            string temp;
-            getline(inFile, temp);
-            value += temp + '\n'; // Add newline char because getline takes it off
-        }
-        else break;
+int main(int argc, char *argv[])
+{   
+    if (argc < 2) {
+        cout << "Error: no input file specified" << endl;
     }
-    cout << "Automaton.Read = " << myAuto.Read(value) << endl;
-    if (myAuto.Read(value) != 0) {
-        myToken = myAuto.CreateToken(value, line);
-        cout << "Token created: " << myToken.stringedToken() << endl;
-    }
+    else {
 
+        // Variables
+        ifstream inFile(argv[1]);
+        string input = "";
+        vector<Automaton*> allFSA;
+        vector<Token> tokenOutput;
+
+        // Setup all Finite State Automata
+        SSAutomaton CommaAuto(COMMA);
+        allFSA.push_back(&CommaAuto);
+        SSAutomaton PeriodAuto(PERIOD);
+        allFSA.push_back(&PeriodAuto);
+        SSAutomaton QMarkAuto(Q_MARK);
+        allFSA.push_back(&QMarkAuto);
+        SSAutomaton LPAuto(LEFT_PAREN);
+        allFSA.push_back(&LPAuto);
+        SSAutomaton RPAuto(RIGHT_PAREN);
+        allFSA.push_back(&RPAuto);
+        SSAutomaton ColonAuto(COLON);
+        allFSA.push_back(&ColonAuto);
+        SSAutomaton MultAuto(MULTIPLY);
+        allFSA.push_back(&MultAuto);
+        SSAutomaton AddAuto(ADD);
+        allFSA.push_back(&AddAuto);
+
+        MSAutomaton ColonDashAuto(COLON_DASH);
+        allFSA.push_back(&ColonDashAuto);
+        MSAutomaton SchemesAuto(SCHEMES);
+        allFSA.push_back(&SchemesAuto);
+        MSAutomaton FactsAuto(FACTS);
+        allFSA.push_back(&FactsAuto);
+        MSAutomaton RulesAuto(RULES);
+        allFSA.push_back(&RulesAuto);
+        MSAutomaton QueriesAuto(QUERIES);
+        allFSA.push_back(&QueriesAuto);
+
+        BlockCommentAutomaton BCAuto;
+        allFSA.push_back(&BCAuto);
+        LineCommentAutomaton LCAuto;
+        allFSA.push_back(&LCAuto);
+        StringAutomaton StringAuto;
+        allFSA.push_back(&StringAuto);
+        IDAutomaton IDAuto;
+        allFSA.push_back(&IDAuto);
+        ErrorAutomaton EAuto;
+        allFSA.push_back(&EAuto);
+
+
+        //Read and process the input file
+        while (inFile) {
+            if (!inFile.eof()) {
+                string temp;
+                getline(inFile, temp);
+                input += temp + '\n'; // Add newline char because getline takes it off
+            }
+            else break;
+        }
+        input = input.substr(0, input.length() - 1); // Take off the last newline char
+
+        //Run the lexer
+        Lexer myLexer(allFSA);
+        tokenOutput = myLexer.Run(input);
+
+        //Output
+        for (unsigned int i = 0; i < tokenOutput.size(); i++) {
+            cout << tokenOutput[i].stringedToken() << endl;
+        }
+        cout << "Total Tokens = " << tokenOutput.size() << endl;
+    }
     return 0;
-    
 }

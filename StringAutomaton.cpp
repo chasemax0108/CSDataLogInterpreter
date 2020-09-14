@@ -3,9 +3,10 @@
 using namespace std;
 
 int StringAutomaton::Read(const std::string& input) {
+	newLines = 0;
 	if (input.length() != 0) {
 		int state = 0;
-		for (int i = 0; i < input.length(); i++) {
+		for (unsigned int i = 0; i < input.length(); i++) {
 			switch (state) {
 			case 0: //Automaton init
 				if (input[i] == '\'') state = 1;
@@ -16,6 +17,7 @@ int StringAutomaton::Read(const std::string& input) {
 					if (i == (input.length() - 1)) return (i + 1); //Case if the string ends with the end of the input
 					state = 2;
 				}
+				else if (input[i] == '\n') newLines++;
 				break;
 			case 2: //Automaton has found a potential closing quotation
 				if (input[i] == '\'') state = 1;
@@ -31,7 +33,7 @@ Token StringAutomaton::CreateToken(std::string input, int lineNumber) {
 	int state = 0;
 	string value = "";
 	bool finished = false;
-	for (int i = 0; i < input.length(); i++) {
+	for (unsigned int i = 0; i < input.length(); i++) {
 		if (finished) break;
 		switch (state) {
 		case 0:

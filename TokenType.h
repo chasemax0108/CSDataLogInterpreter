@@ -14,6 +14,6 @@ const std::map<TokenType, std::string> MultiSymbolTokenValueMap = { {COLON_DASH,
 	{FACTS, "Facts"}, {RULES, "Rules"}, {QUERIES, "Queries"} };
 
 const std::string TokenStrings[18] = { "COMMA", "PERIOD", "Q_MARK", "LEFT_PAREN", "RIGHT_PAREN", "COLON", "COLON_DASH",
-	"MULTIPLY", "ADD", "SCHEMES", "FACTS", "RULES", "QUERIES", "ID", "STRING", "COMMENT", "UNDEFINED", "ENDOFFILE" };
+	"MULTIPLY", "ADD", "SCHEMES", "FACTS", "RULES", "QUERIES", "ID", "STRING", "COMMENT", "UNDEFINED", "EOF" };
 
-#endif // !TOKENTYPE_H
+#endif

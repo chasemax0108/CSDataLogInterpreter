@@ -39,6 +39,12 @@
     <ClCompile Include="IDAutomaton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Lexer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorAutomaton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Automaton.h">
@@ -69,6 +75,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="IDAutomaton.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorAutomaton.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

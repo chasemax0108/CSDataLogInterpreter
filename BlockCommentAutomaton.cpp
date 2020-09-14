@@ -4,9 +4,10 @@
 using namespace std;
 
 int BlockCommentAutomaton::Read(const std::string& input) {
+	newLines = 0;
 	if (input.length() != 0) {
 		int state = 0;
-		for (int i = 0; i < input.length(); i++) {
+		for (unsigned int i = 0; i < input.length(); i++) {
 			switch (state) {
 			case 0:
 				if (input[i] == '#') state = 1;
@@ -18,10 +19,12 @@ int BlockCommentAutomaton::Read(const std::string& input) {
 				break;
 			case 2:
 				if (input[i] == '|') state = 3;
+				else if (input[i] == '\n') newLines++;
 				break;
 			case 3:
 				if (input[i] == '#') return (i + 1);
 				else if (input[i] != '|') state = 2;
+				if (input[i] == '\n') newLines++;
 				break;
 			}
 		}
@@ -32,7 +35,7 @@ int BlockCommentAutomaton::Read(const std::string& input) {
 Token BlockCommentAutomaton::CreateToken(std::string input, int lineNumber) {
 	string value = "";
 	int state = 0;
-	for (int i = 0; i < input.length(); i++) {
+	for (unsigned int i = 0; i < input.length(); i++) {
 		if (state == 4) break;
 		value += input[i];
 		switch (state) {

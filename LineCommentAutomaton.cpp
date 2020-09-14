@@ -6,7 +6,7 @@ using namespace std;
 int LineCommentAutomaton::Read(const std::string& input) {
 	if (input.length() != 0) {
 		int state = 0;
-		for (int i = 0; i < input.length(); i++) {
+		for (unsigned int i = 0; i < input.length(); i++) {
 			switch (state) {
 			case 0:
 				if (input[i] != '#') return 0;
@@ -23,7 +23,7 @@ int LineCommentAutomaton::Read(const std::string& input) {
 
 Token LineCommentAutomaton::CreateToken(std::string input, int lineNumber) {
 	string value = "";
-	for (int i = 0; i < input.length(); i++) {
+	for (unsigned int i = 0; i < input.length(); i++) {
 		if (input[i] == '\n') break;
 		value += input[i];
 	}

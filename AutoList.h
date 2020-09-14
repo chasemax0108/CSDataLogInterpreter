@@ -7,6 +7,7 @@
 #include "LineCommentAutomaton.h"
 #include "BlockCommentAutomaton.h"
 #include "IDAutomaton.h"
+#include "ErrorAutomaton.h"
 
 #endif // !AUTOLIST_H
 
