@@ -1,7 +1,8 @@
 #ifndef MSAUTOMATON_H
 #define MSAUTOMATON_H
 
-// MS stands for "multi-symbol"
+// MS stands for "multi-symbol". This Automaton takes a string in its constructor and uses
+// that in order to produce a recognition state.
 
 #include "Automaton.h"
 #include <string>

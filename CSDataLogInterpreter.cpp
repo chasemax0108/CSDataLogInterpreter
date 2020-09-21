@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
         vector<Automaton*> allFSA;
         vector<Token> tokenOutput;
 
-        // Setup all Finite State Automata
+        // Setup all Finite State Automata and add them to a collection of Automata
         SSAutomaton CommaAuto(COMMA);
         allFSA.push_back(&CommaAuto);
         SSAutomaton PeriodAuto(PERIOD);

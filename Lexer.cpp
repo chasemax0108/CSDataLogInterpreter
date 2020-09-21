@@ -1,17 +1,24 @@
 #include <iostream>
 #include <cctype>
+#include <vector>
 
 #include "Lexer.h"
+#include "AutoList.h"
 
 using namespace std;
 
 vector<Token> Lexer::Run(string input) {
+
+	// init Variables 
 	vector<Token> allTokens;
 	int line = 1;
 	int inputRead = 0;
 	int maxRead, maxNewLines;
 	Automaton* maxMachine;
+
+	// Main Lexer Loop
 	while (true) {
+
 		//Reset Variables
 		maxRead = 0;
 		maxNewLines = 0;

@@ -4,6 +4,9 @@
 #include <map>
 #include <string>
 
+// This file contains global variables and the TokenType enum that make it possible to easily add or remove
+// various symbols and phrases from the program
+
 enum TokenType { COMMA, PERIOD, Q_MARK, LEFT_PAREN, RIGHT_PAREN, COLON, COLON_DASH,
 		MULTIPLY, ADD, SCHEMES, FACTS, RULES, QUERIES, ID, STRING, COMMENT, UNDEFINED, ENDOFFILE};
 

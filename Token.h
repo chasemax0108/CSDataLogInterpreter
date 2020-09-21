@@ -1,6 +1,8 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
+// Class for a token and all of its getters and setters
+
 #include <string>
 
 #include "TokenType.h"

@@ -1,6 +1,9 @@
 #ifndef SSAUTOMATON_H
 #define SSAUTOMATON_H
 
+// This automaton, upon construction, takes a symbol and makes that for the basis of its recognition
+// SSAutomaton stands for "Single Symbol Automaton"
+
 #include "Automaton.h"
 #include "TokenType.h"
 
