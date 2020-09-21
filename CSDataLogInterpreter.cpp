@@ -8,6 +8,7 @@
 #include "TokenType.h"
 #include "Token.h"
 #include "Lexer.h"
+#include "Parser.h"
 
 using namespace std;
 
@@ -22,7 +23,7 @@ int main(int argc, char *argv[])
         ifstream inFile(argv[1]);
         string input = "";
         vector<Automaton*> allFSA;
-        vector<Token> tokenOutput;
+        vector<Token> tokens;
 
         // Setup all Finite State Automata and add them to a collection of Automata
         // (define the rules of the lexer)
@@ -79,13 +80,26 @@ int main(int argc, char *argv[])
 
         //Run the lexer
         Lexer myLexer(allFSA);
-        tokenOutput = myLexer.Run(input);
+        tokens = myLexer.Run(input);
+
+        for (int i = 0; i < tokens.size(); i++) {
+            cout << tokens[i].stringedToken() << endl;
+        }
+
+        //Run the parser
+        try {
+            Parser myParser;
+            myParser.Parse(tokens);
+            cout << "Parsing Successful!" << endl;
+        }
+        catch (Token errorToken) {
+            cout << "Failure!" << endl;
+            cout << "  " << errorToken.stringedToken() << endl;
+        }
+        
 
         //Output
-        for (unsigned int i = 0; i < tokenOutput.size(); i++) {
-            cout << tokenOutput[i].stringedToken() << endl;
-        }
-        cout << "Total Tokens = " << tokenOutput.size() << endl;
+       
     }
     return 0;
 }

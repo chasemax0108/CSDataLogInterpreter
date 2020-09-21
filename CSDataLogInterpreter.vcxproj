@@ -145,6 +145,7 @@
     <ClCompile Include="IDAutomaton.cpp" />
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="LineCommentAutomaton.cpp" />
+    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="SSAutomaton.cpp" />
     <ClCompile Include="MSAutomaton.cpp" />
     <ClCompile Include="StringAutomaton.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="LineCommentAutomaton.h" />
     <ClInclude Include="MSAutomaton.h" />
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="SSAutomaton.h" />
     <ClInclude Include="StringAutomaton.h" />
     <ClInclude Include="Token.h" />

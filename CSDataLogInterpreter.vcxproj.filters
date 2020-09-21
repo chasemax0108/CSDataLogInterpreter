@@ -13,75 +13,84 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Lexer Files">
+      <UniqueIdentifier>{9c430b1f-e8b6-467f-9e15-09b45ce0cca1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CSDataLogInterpreter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Token.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SSAutomaton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MSAutomaton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StringAutomaton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LineCommentAutomaton.cpp">
+    <ClCompile Include="Parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BlockCommentAutomaton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IDAutomaton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Lexer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Lexer Files</Filter>
     </ClCompile>
     <ClCompile Include="ErrorAutomaton.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IDAutomaton.cpp">
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexer.cpp">
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LineCommentAutomaton.cpp">
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MSAutomaton.cpp">
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SSAutomaton.cpp">
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StringAutomaton.cpp">
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Token.cpp">
+      <Filter>Source Files\Lexer Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Parser.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
     <ClInclude Include="Automaton.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Token.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TokenType.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Lexer Files</Filter>
     </ClInclude>
     <ClInclude Include="AutoList.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SSAutomaton.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MSAutomaton.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StringAutomaton.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LineCommentAutomaton.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Lexer Files</Filter>
     </ClInclude>
     <ClInclude Include="BlockCommentAutomaton.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDAutomaton.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Lexer Files</Filter>
     </ClInclude>
     <ClInclude Include="ErrorAutomaton.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDAutomaton.h">
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer.h">
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LineCommentAutomaton.h">
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MSAutomaton.h">
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SSAutomaton.h">
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StringAutomaton.h">
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Token.h">
+      <Filter>Source Files\Lexer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TokenType.h">
+      <Filter>Source Files\Lexer Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
