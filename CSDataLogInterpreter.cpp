@@ -82,6 +82,14 @@ int main(int argc, char *argv[])
         Lexer myLexer(allFSA);
         tokens = myLexer.Run(input);
 
+        // Clean out the comments
+        for (int i = 0; i < tokens.size(); i++) {
+            if (tokens[i].getType() == COMMENT) {
+                tokens.erase(tokens.begin() + i);
+                i--;
+            }
+        }
+
         for (int i = 0; i < tokens.size(); i++) {
             cout << tokens[i].stringedToken() << endl;
         }

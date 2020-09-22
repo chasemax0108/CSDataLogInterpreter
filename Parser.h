@@ -12,6 +12,19 @@ private:
 	void ParseExpression();
 	void ParseStringList();
 	void ParseIDList();
+	void ParseParameterList();
+	void ParsePredicate();
+	void ParsePredicateList();
+	void ParseHeadPredicate();
+	void ParseScheme();
+	void ParseFact();
+	void ParseRule();
+	void ParseQuery();
+	void ParseSchemeList();
+	void ParseFactList();
+	void ParseRuleList();
+	void ParseQueryList();
+	void ParseDataLogProgram();
 	std::vector<Token> workingTokens;
 	int currentToken;
 public:
