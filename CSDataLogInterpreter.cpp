@@ -1,7 +1,17 @@
+#ifdef _MSC_VER
+#define _CRTDBG_MAP_ALLOC  
+#include <crtdbg.h>
+#define VS_MEM_CHECK _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#else
+#define VS_MEM_CHECK
+#endif
+
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <vector>
+#include <set>
+#include <iterator>
 
 #include "Automaton.h"
 #include "AutoList.h"
@@ -9,16 +19,18 @@
 #include "Token.h"
 #include "Lexer.h"
 #include "Parser.h"
+#include "ParserDataStructures.h"
 
 using namespace std;
 
 int main(int argc, char *argv[])
-{   
+{
+    VS_MEM_CHECK;
     if (argc < 2) {
         cout << "Error: no input file specified" << endl;
     }
     else {
-
+        /*
         // Variables
         ifstream inFile(argv[1]);
         string input = "";
@@ -90,6 +102,7 @@ int main(int argc, char *argv[])
             }
         }
 
+        // See the current token set
         for (int i = 0; i < tokens.size(); i++) {
             cout << tokens[i].stringedToken() << endl;
         }
@@ -104,10 +117,35 @@ int main(int argc, char *argv[])
             cout << "Failure!" << endl;
             cout << "  " << errorToken.stringedToken() << endl;
         }
-        
+        */
 
-        //Output
-       
+        // TESTING
+        Predicate* myPred = new Predicate("myPred");
+        myPred->addParam(new PlainParameter("Hello"));
+        myPred->addParam(new Expression(new PlainParameter("Seven"), new PlainParameter("Five"), ADD));
+        Predicate* myHeadPred = new Predicate("HEAD");
+        myHeadPred->addParam(new PlainParameter("Hi"));
+        myHeadPred->addParam(new PlainParameter("yas"));
+        myHeadPred->addParam(new PlainParameter("no"));
+        Predicate* myOtherPred = new Predicate("OTHER");
+        myOtherPred->addParam(new PlainParameter("'Yo'"));
+        myOtherPred->addParam(new PlainParameter("'1275'"));
+        myOtherPred->addParam(new PlainParameter("'no way'"));
+        Predicate* myQuery = new Predicate("Query");
+        myQuery->addParam(new PlainParameter("Yan"));
+        myQuery->addParam(new PlainParameter("Han Solo"));
+        myQuery->addParam(new PlainParameter("Ding dong"));
+        Rule* myRule = new Rule(myHeadPred);
+        myRule->addPred(myPred);
+
+        DataLogProgram* myProgram = new DataLogProgram();
+        myProgram->addFact(myOtherPred);
+        myProgram->addRule(myRule);
+        myProgram->addFact(myQuery);
+        myProgram->updateDomain();
+        cout << myProgram->toString() << endl;
+        delete myProgram;
     }
     return 0;
+
 }

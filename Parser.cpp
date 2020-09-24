@@ -9,7 +9,7 @@ using namespace std;
 void Parser::Parse(vector<Token> &inputTokens) {
 	workingTokens = inputTokens;
 	currentToken = 0;
-	ParseDataLogProgram(); //////// TEST SPOT
+	ParseDataLogProgram();
 	return;
 }
 

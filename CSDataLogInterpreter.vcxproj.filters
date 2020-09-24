@@ -51,6 +51,21 @@
     <ClCompile Include="Token.cpp">
       <Filter>Source Files\Lexer Files</Filter>
     </ClCompile>
+    <ClCompile Include="PlainParameter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Expression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Predicate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DataLogProgram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Parser.h">
@@ -91,6 +106,27 @@
     </ClInclude>
     <ClInclude Include="TokenType.h">
       <Filter>Source Files\Lexer Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlainParameter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Expression.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParserDataStructures.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Predicate.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rule.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataLogProgram.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

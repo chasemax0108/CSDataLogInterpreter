@@ -141,11 +141,16 @@
   <ItemGroup>
     <ClCompile Include="BlockCommentAutomaton.cpp" />
     <ClCompile Include="CSDataLogInterpreter.cpp" />
+    <ClCompile Include="DataLogProgram.cpp" />
     <ClCompile Include="ErrorAutomaton.cpp" />
+    <ClCompile Include="Expression.cpp" />
     <ClCompile Include="IDAutomaton.cpp" />
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="LineCommentAutomaton.cpp" />
     <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="PlainParameter.cpp" />
+    <ClCompile Include="Predicate.cpp" />
+    <ClCompile Include="Rule.cpp" />
     <ClCompile Include="SSAutomaton.cpp" />
     <ClCompile Include="MSAutomaton.cpp" />
     <ClCompile Include="StringAutomaton.cpp" />
@@ -155,12 +160,19 @@
     <ClInclude Include="AutoList.h" />
     <ClInclude Include="Automaton.h" />
     <ClInclude Include="BlockCommentAutomaton.h" />
+    <ClInclude Include="DataLogProgram.h" />
     <ClInclude Include="ErrorAutomaton.h" />
+    <ClInclude Include="Expression.h" />
     <ClInclude Include="IDAutomaton.h" />
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="LineCommentAutomaton.h" />
     <ClInclude Include="MSAutomaton.h" />
+    <ClInclude Include="Parameter.h" />
     <ClInclude Include="Parser.h" />
+    <ClInclude Include="ParserDataStructures.h" />
+    <ClInclude Include="PlainParameter.h" />
+    <ClInclude Include="Predicate.h" />
+    <ClInclude Include="Rule.h" />
     <ClInclude Include="SSAutomaton.h" />
     <ClInclude Include="StringAutomaton.h" />
     <ClInclude Include="Token.h" />
