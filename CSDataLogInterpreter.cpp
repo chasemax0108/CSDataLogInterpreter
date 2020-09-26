@@ -30,12 +30,12 @@ int main(int argc, char *argv[])
         cout << "Error: no input file specified" << endl;
     }
     else {
-        /*
         // Variables
         ifstream inFile(argv[1]);
         string input = "";
         vector<Automaton*> allFSA;
         vector<Token> tokens;
+        DataLogProgram* program;
 
         // Setup all Finite State Automata and add them to a collection of Automata
         // (define the rules of the lexer)
@@ -108,43 +108,20 @@ int main(int argc, char *argv[])
         }
 
         //Run the parser
+        program = new DataLogProgram();
         try {
             Parser myParser;
-            myParser.Parse(tokens);
-            cout << "Parsing Successful!" << endl;
+            myParser.Parse(tokens, program);
+            cout << "Success!" << endl;
+            cout << program->toString() << endl;
+            delete program;
         }
         catch (Token errorToken) {
             cout << "Failure!" << endl;
             cout << "  " << errorToken.stringedToken() << endl;
+            delete program;
         }
-        */
-
-        // TESTING
-        Predicate* myPred = new Predicate("myPred");
-        myPred->addParam(new PlainParameter("Hello"));
-        myPred->addParam(new Expression(new PlainParameter("Seven"), new PlainParameter("Five"), ADD));
-        Predicate* myHeadPred = new Predicate("HEAD");
-        myHeadPred->addParam(new PlainParameter("Hi"));
-        myHeadPred->addParam(new PlainParameter("yas"));
-        myHeadPred->addParam(new PlainParameter("no"));
-        Predicate* myOtherPred = new Predicate("OTHER");
-        myOtherPred->addParam(new PlainParameter("'Yo'"));
-        myOtherPred->addParam(new PlainParameter("'1275'"));
-        myOtherPred->addParam(new PlainParameter("'no way'"));
-        Predicate* myQuery = new Predicate("Query");
-        myQuery->addParam(new PlainParameter("Yan"));
-        myQuery->addParam(new PlainParameter("Han Solo"));
-        myQuery->addParam(new PlainParameter("Ding dong"));
-        Rule* myRule = new Rule(myHeadPred);
-        myRule->addPred(myPred);
-
-        DataLogProgram* myProgram = new DataLogProgram();
-        myProgram->addFact(myOtherPred);
-        myProgram->addRule(myRule);
-        myProgram->addFact(myQuery);
-        myProgram->updateDomain();
-        cout << myProgram->toString() << endl;
-        delete myProgram;
+ 
     }
     return 0;
 

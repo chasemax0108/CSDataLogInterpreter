@@ -28,6 +28,9 @@ public:
 	void addPred(Predicate* p) {
 		allPreds.push_back(p);
 	}
+	void addHeadPred(Predicate* p) {
+		headPred = p;
+	}
 	Predicate* predAt(int i) {
 		return allPreds[i];
 	}

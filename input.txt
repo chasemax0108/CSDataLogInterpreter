@@ -1,0 +1,10 @@
+Schemes:
+Hey(hi, no, hi)
+Facts:
+Yo('yah', 'nah', 'nice').
+Rules:
+Yanni(no, yas) :- Yes(lets, go, b).
+Queries:
+AH(id, no)?
+#| You need to fix the expression part of the parameter thing |#
+#| Also the comments, what the heck |#

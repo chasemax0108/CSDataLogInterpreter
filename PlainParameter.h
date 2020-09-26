@@ -13,7 +13,7 @@ public:
 	PlainParameter() {};
 	PlainParameter(std::string v);
 	virtual std::string toString();
-	void setValue(std::string v) {
+	virtual void setValue(std::string v) {
 		value = v;
 	}
 	std::string getValue() {
