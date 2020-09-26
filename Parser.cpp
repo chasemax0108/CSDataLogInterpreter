@@ -60,6 +60,7 @@ void Parser::ParseExpression(Expression* parentExp) {
 			ParseParameter(nullptr, nullptr, newExp);
 		}
 		else {
+			parentExp->setParam1(new PlainParameter());
 			ParseParameter(nullptr, parentExp->getParam1(), nullptr);
 		}
 		ParseOperator(parentExp);
@@ -69,6 +70,7 @@ void Parser::ParseExpression(Expression* parentExp) {
 			ParseParameter(nullptr, nullptr, newExp);
 		}
 		else {
+			parentExp->setParam2(new PlainParameter());
 			ParseParameter(nullptr, parentExp->getParam2(), nullptr);
 		}
 		if (workingTokens[currentToken].getType() == RIGHT_PAREN) {
@@ -251,7 +253,7 @@ void Parser::ParseRule(DataLogProgram* p) {
 
 void Parser::ParseQuery(DataLogProgram* p) {
 	if (workingTokens[currentToken].getType() == ID) {
-		Predicate* newPred = new Predicate();
+		Predicate* newPred = new Predicate(workingTokens[currentToken].getValue());
 		p->addQuery(newPred);
 		ParsePredicate(nullptr, newPred);
 		if (workingTokens[currentToken].getType() == Q_MARK) {

@@ -1,10 +1,21 @@
+# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
+# FOR USE ONLY DURING FALL 2020 SEMESTSER
+# passoffInput29     FAILURE RightParen,23
+# Testing for no IDs in facts.
 Schemes:
-Hey(hi, no, hi)
+
+exprTest( e )
+deathTest( d , t )
+
 Facts:
-Yo('yah', 'nah', 'nice').
+
+cool('eat','lots of','SPAM').
+
 Rules:
-Yanni(no, yas) :- Yes(lets, go, b).
+
+deathTest(SPAM) :- exprTest
+                         ( E ).
+
 Queries:
-AH(id, no)?
-#| You need to fix the expression part of the parameter thing |#
-#| Also the comments, what the heck |#
+
+deathTest( a , b )?

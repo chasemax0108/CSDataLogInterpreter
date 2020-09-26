@@ -102,11 +102,6 @@ int main(int argc, char *argv[])
             }
         }
 
-        // See the current token set
-        for (int i = 0; i < tokens.size(); i++) {
-            cout << tokens[i].stringedToken() << endl;
-        }
-
         //Run the parser
         program = new DataLogProgram();
         try {

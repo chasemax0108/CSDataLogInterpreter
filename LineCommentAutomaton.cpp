@@ -16,15 +16,18 @@ int LineCommentAutomaton::Read(const std::string& input) {
 			case 1:
 				if (input[i] == '|') state = 2;
 				else if (input[i] == '\n') return i;
+				else if (i == input.length() - 1) return i + 1;
 				break;
 			case 2:
 				if (input[i] == '|') state = 3;
 				else if (input[i] == '\n') return i;
+				else if (i == input.length() - 1) return i + 1;
 				else state = 1;
 				break;
 			case 3:
 				if (input[i] == '#') return 0;
 				else if (input[i] == '\n') return i;
+				else if (i == input.length() - 1) return i + 1;
 				else if (input[i] != '|') state = 1;
 				break;
 			}
