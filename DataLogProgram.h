@@ -17,16 +17,16 @@ private:
 public:
 	DataLogProgram() {};
 	~DataLogProgram() {
-		for (int i = 0; i < schemes.size(); i++) {
+		for (unsigned int i = 0; i < schemes.size(); i++) {
 			delete schemes[i];
 		}
-		for (int i = 0; i < facts.size(); i++) {
+		for (unsigned int i = 0; i < facts.size(); i++) {
 			delete facts[i];
 		}
-		for (int i = 0; i < rules.size(); i++) {
+		for (unsigned int i = 0; i < rules.size(); i++) {
 			delete rules[i];
 		}
-		for (int i = 0; i < queries.size(); i++) {
+		for (unsigned int i = 0; i < queries.size(); i++) {
 			delete queries[i];
 		}
 	}

@@ -10,7 +10,7 @@ std::string Rule::toString() {
 	output += MultiSymbolTokenValueMap.at(COLON_DASH);
 	output += " ";
 	output += allPreds[0]->toString();
-	for (int i = 1; i < allPreds.size(); i++) {
+	for (unsigned int i = 1; i < allPreds.size(); i++) {
 		output += SymbolTokenValueMap.at(COMMA);
 		output += allPreds[i]->toString();
 	}

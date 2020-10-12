@@ -16,7 +16,7 @@ string Predicate::toString() {
 }
 
 Predicate::~Predicate() {
-	for (int i = 0; i < allParams.size(); i++) {
+	for (unsigned int i = 0; i < allParams.size(); i++) {
 		delete allParams[i];
 	}
 }

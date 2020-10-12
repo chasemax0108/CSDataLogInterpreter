@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
         tokens = myLexer.Run(input);
 
         // Clean out the comments
-        for (int i = 0; i < tokens.size(); i++) {
+        for (unsigned int i = 0; i < tokens.size(); i++) {
             if (tokens[i].getType() == COMMENT) {
                 tokens.erase(tokens.begin() + i);
                 i--;

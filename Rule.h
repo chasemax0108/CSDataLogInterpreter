@@ -14,7 +14,7 @@ public:
 	Rule() {};
 	~Rule() {
 		delete headPred;
-		for (int i = 0; i < allPreds.size(); i++) {
+		for (unsigned int i = 0; i < allPreds.size(); i++) {
 			delete allPreds[i];
 		}
 	}
