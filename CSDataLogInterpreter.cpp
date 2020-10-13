@@ -20,6 +20,7 @@
 #include "Lexer.h"
 #include "Parser.h"
 #include "ParserDataStructures.h"
+#include "DataLogTypes.h"
 
 using namespace std;
 
@@ -104,18 +105,85 @@ int main(int argc, char *argv[])
 
         //Run the parser
         program = new DataLogProgram();
+
         try {
             Parser myParser;
             myParser.Parse(tokens, program);
             cout << "Success!" << endl;
             cout << program->toString() << endl;
-            delete program;
         }
         catch (Token errorToken) {
             cout << "Failure!" << endl;
             cout << "  " << errorToken.stringedToken() << endl;
-            delete program;
         }
+
+        //Execution! TEST AREA
+        Database database;
+        Interpreter myInterpreter(*program, database);
+        myInterpreter.Run();
+        delete program;
+        /*
+        vector<string> myVec;
+        myVec.push_back("Yes");
+        myVec.push_back("No");
+        myVec.push_back("OK");
+        Tuple myTup(myVec);
+        
+        vector<string> myVec2;
+        myVec2.push_back("Yas");
+        myVec2.push_back("Nah");
+        myVec2.push_back("Yas");
+        Tuple myTup2(myVec2);
+
+        vector<string> myVec4;
+        myVec4.push_back("Yes");
+        myVec4.push_back("Yes");
+        myVec4.push_back("Yes");
+        Tuple myTup3(myVec4);
+
+        vector<string> myVec3;
+        myVec3.push_back("X");
+        myVec3.push_back("Y");
+        myVec3.push_back("Z");
+        Header myHead(myVec3);
+
+        set<Tuple> myTups;
+        myTups.insert(myTup);
+        myTups.insert(myTup2);
+        myTups.insert(myTup3);
+
+        Relation myRel(myHead, myTups);
+        cout << myRel.toString() << endl;
+
+        Relation newRel = myRel.select(0, "Yes");
+        cout << newRel.toString() << endl;
+
+        Relation newRel2 = myRel.select(0, 2);
+        cout << newRel2.toString() << endl;
+
+        vector<int> myProjVec;
+        myProjVec.push_back(0);
+        myProjVec.push_back(1);
+
+        Relation newRel3 = myRel.project(myProjVec);
+        cout << newRel3.toString() << endl;
+
+        vector<string> myRenameVec;
+        myRenameVec.push_back("A");
+        myRenameVec.push_back("B");
+        myRenameVec.push_back("C");
+
+        Relation newRel4 = myRel.rename(myRenameVec);
+        cout << newRel4.toString() << endl;
+
+        Database myDatabase;
+        myDatabase.addRelation(newRel, "First Relation");
+        myDatabase.addRelation(newRel2, "Second Relation");
+        myDatabase.addRelation(newRel3, "Third Relation");
+        myDatabase.addRelation(newRel4, "Fourth Relation");
+
+        cout << myDatabase.getRelation("Fourth Relation").toString() << endl;
+        */
  
     }
     return 0;

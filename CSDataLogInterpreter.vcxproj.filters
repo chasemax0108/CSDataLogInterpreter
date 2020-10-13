@@ -16,12 +16,12 @@
     <Filter Include="Source Files\Lexer Files">
       <UniqueIdentifier>{9c430b1f-e8b6-467f-9e15-09b45ce0cca1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Parser Files">
+      <UniqueIdentifier>{a86edff2-3b93-4939-aab9-e13df4e628e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CSDataLogInterpreter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BlockCommentAutomaton.cpp">
@@ -51,26 +51,41 @@
     <ClCompile Include="Token.cpp">
       <Filter>Source Files\Lexer Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlainParameter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Expression.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Rule.cpp">
+      <Filter>Source Files\Parser Files</Filter>
     </ClCompile>
     <ClCompile Include="Predicate.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Parser Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rule.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="PlainParameter.cpp">
+      <Filter>Source Files\Parser Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Parser.cpp">
+      <Filter>Source Files\Parser Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Expression.cpp">
+      <Filter>Source Files\Parser Files</Filter>
     </ClCompile>
     <ClCompile Include="DataLogProgram.cpp">
+      <Filter>Source Files\Parser Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tuple.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Header.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Relation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Database.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Interpreter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Parser.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Automaton.h">
       <Filter>Source Files\Lexer Files</Filter>
     </ClInclude>
@@ -107,25 +122,46 @@
     <ClInclude Include="TokenType.h">
       <Filter>Source Files\Lexer Files</Filter>
     </ClInclude>
-    <ClInclude Include="Parameter.h">
+    <ClInclude Include="DataLogProgram.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlainParameter.h">
+    <ClInclude Include="Parser.h">
+      <Filter>Source Files\Parser Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tuple.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Expression.h">
+    <ClInclude Include="DataLogTypes.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="ParserDataStructures.h">
+    <ClInclude Include="Header.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Predicate.h">
+    <ClInclude Include="Relation.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Rule.h">
+      <Filter>Source Files\Parser Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Predicate.h">
+      <Filter>Source Files\Parser Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlainParameter.h">
+      <Filter>Source Files\Parser Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParserDataStructures.h">
+      <Filter>Source Files\Parser Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>Source Files\Parser Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Expression.h">
+      <Filter>Source Files\Parser Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Database.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataLogProgram.h">
+    <ClInclude Include="Interpreter.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

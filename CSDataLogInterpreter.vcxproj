@@ -141,29 +141,38 @@
   <ItemGroup>
     <ClCompile Include="BlockCommentAutomaton.cpp" />
     <ClCompile Include="CSDataLogInterpreter.cpp" />
+    <ClCompile Include="Database.cpp" />
     <ClCompile Include="DataLogProgram.cpp" />
     <ClCompile Include="ErrorAutomaton.cpp" />
     <ClCompile Include="Expression.cpp" />
+    <ClCompile Include="Header.cpp" />
     <ClCompile Include="IDAutomaton.cpp" />
+    <ClCompile Include="Interpreter.cpp" />
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="LineCommentAutomaton.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="PlainParameter.cpp" />
     <ClCompile Include="Predicate.cpp" />
+    <ClCompile Include="Relation.cpp" />
     <ClCompile Include="Rule.cpp" />
     <ClCompile Include="SSAutomaton.cpp" />
     <ClCompile Include="MSAutomaton.cpp" />
     <ClCompile Include="StringAutomaton.cpp" />
     <ClCompile Include="Token.cpp" />
+    <ClCompile Include="Tuple.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoList.h" />
     <ClInclude Include="Automaton.h" />
     <ClInclude Include="BlockCommentAutomaton.h" />
+    <ClInclude Include="Database.h" />
     <ClInclude Include="DataLogProgram.h" />
+    <ClInclude Include="DataLogTypes.h" />
     <ClInclude Include="ErrorAutomaton.h" />
     <ClInclude Include="Expression.h" />
+    <ClInclude Include="Header.h" />
     <ClInclude Include="IDAutomaton.h" />
+    <ClInclude Include="Interpreter.h" />
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="LineCommentAutomaton.h" />
     <ClInclude Include="MSAutomaton.h" />
@@ -172,11 +181,13 @@
     <ClInclude Include="ParserDataStructures.h" />
     <ClInclude Include="PlainParameter.h" />
     <ClInclude Include="Predicate.h" />
+    <ClInclude Include="Relation.h" />
     <ClInclude Include="Rule.h" />
     <ClInclude Include="SSAutomaton.h" />
     <ClInclude Include="StringAutomaton.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="TokenType.h" />
+    <ClInclude Include="Tuple.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />
