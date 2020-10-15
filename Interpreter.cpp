@@ -55,11 +55,49 @@ Relation Interpreter::evaluatePredicate(Predicate* p) {
 	Relation* originalRelation;
 	originalRelation = database->getRelation(p->getid());
 	Relation workingRelation = *originalRelation;
-	for (int i = 0; i < p->paramListSize(); i++) {
+
+	// First we select
+	for (int i = 0; i < p->paramListSize(); i++) { // select all of the values first
 		string currentColumn = p->paramAt(i)->toString();
 		if (currentColumn[0] == '\'') { // This select is looking for values
 			workingRelation = workingRelation.select(i, currentColumn);
 		}
 	}
+	for (int i = 0; i < p->paramListSize(); i++) { // Then select all of the similar columns
+		string currentColumn = p->paramAt(i)->toString();
+		if (currentColumn[0] != '\'') {
+			for (int j = 0; j < p->paramListSize(); j++) {
+				string compareColumn = p->paramAt(j)->toString();
+				if (currentColumn == compareColumn && j != i) { // This is an equivalence test
+					workingRelation = workingRelation.select(i, j);
+				}
+			}
+		}
+	}
+
+	// Now we project and get names for rename
+	vector<int> columnsToKeep;
+	vector<string> columnNames;
+	for (int i = 0; i < p->paramListSize(); i++) {
+		string currentColumn = p->paramAt(i)->toString();
+		if (currentColumn[0] != '\'') { // It's a named column, not a value to test for
+			bool addMe = true;
+			for (int j = 0; j < i; j++) { // Are any columns before this one the same? (is unique so far?)
+				string compareColumn = p->paramAt(j)->toString();
+				if (currentColumn == compareColumn) { // Don't add it, there's already one in here.
+					addMe = false;
+				}
+			}
+			if (addMe) {
+				columnsToKeep.push_back(i);
+				columnNames.push_back(currentColumn);
+			}
+		}
+	}
+	workingRelation = workingRelation.project(columnsToKeep);
+
+	// Now we rename
+	workingRelation = workingRelation.rename(columnNames);
+
 	return workingRelation;
 }

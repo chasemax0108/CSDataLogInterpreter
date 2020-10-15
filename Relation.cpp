@@ -27,8 +27,8 @@ string Relation::toString() {
 	stringstream output;
 	set<Tuple>::iterator iter;
 	for (iter = allTuples.begin(); iter != allTuples.end(); iter++) {
-		output << "  ";
 		if (iter->getSize() > 0) {
+			output << "  ";
 			output << head.getNameAt(0) << "=" << iter->getParamAt(0);
 			for (int i = 1; i < iter->getSize(); i++) {
 				output << ", " << head.getNameAt(i) << "=" << iter->getParamAt(i);
@@ -70,13 +70,13 @@ Relation Relation::project(std::vector<int> indices) {
 	vector<string> newIndices;
 	set<Tuple>::iterator iter;
 	set<Tuple> newTuples;
-	for (int i = 0; i < indices.size(); i++) {
+	for (unsigned int i = 0; i < indices.size(); i++) {
 		newIndices.push_back(head.getNameAt(indices.at(i)));
 	}
 	Header newHead(newIndices);
 	for (iter = allTuples.begin(); iter != allTuples.end(); iter++) {
 		vector<string> copiedTupleValues;
-		for (int i = 0; i < indices.size(); i++) {
+		for (unsigned int i = 0; i < indices.size(); i++) {
 			copiedTupleValues.push_back(iter->getParamAt(indices.at(i)));
 		}
 		Tuple copiedTuple(copiedTupleValues);
