@@ -34,6 +34,12 @@ void Interpreter::Run() {
 		(database->getRelation(datalog->factAt(i)->getid()))->addTuple(newTuple);
 	}
 
+	// Interpret the Rules (IMPLEMENT)
+	// Step 1: create a natural join function
+	
+	Relation newRelation = database->getRelation("studentClass")->naturalJoin(*(database->getRelation("classTime")));
+	cout << newRelation.toString() << endl;
+
 	// Interpret the Queries
 	for (int i = 0; i < datalog->queryListSize(); i++) {
 		stringstream output;
@@ -101,3 +107,4 @@ Relation Interpreter::evaluatePredicate(Predicate* p) {
 
 	return workingRelation;
 }
+

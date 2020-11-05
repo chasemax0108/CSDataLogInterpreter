@@ -1,38 +1,17 @@
-# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236
-# FOR USE ONLY DURING FALL 2020 SEMESTSER
 Schemes:
-   childOf(A,B)
-   marriedTo(A,B)
-   siblings(W,X,Y,Z)
+studentClass(student, class)
+classTime(class, time)
 
 Facts:
-   marriedTo('Zed','Bea').
-   marriedTo('Bea','Zed').
-   childOf('Jill','Zed').
-   childOf('Ned','Bea').
-   childOf('Tim','Bea').
-   childOf('Zed','Zed').
-   siblings('Jill','Zed','Tim','Zed').
-   childOf('George Foreman','George Foreman').
-   childOf('George Foreman','George Foreman').
-   childOf('George Foreman','George Foreman').
-   childOf('George Foreman','George Foreman').
-   childOf('George Foreman','George Foreman').
-   childOf('George Foreman','George Foreman').
-   childOf('George Foreman','George Foreman').
-   childOf('George Foreman','George Foreman').
-   siblings('George Foreman','George Foreman','George Foreman','George Foreman').
-   siblings('George Foreman','George Foreman','George Foreman','George Foreman').
-   siblings('George Foreman','George Foreman','George Foreman','George Foreman').
-   siblings('Tod','Tod','George Foreman','Tod').
+studentClass('Chase', 'CS 236').
+studentClass('Daniel', 'ACC 200').
+studentClass('Kaden', 'ARAB 101').
+classTime('CS 236', '1:00 PM').
+classTime('ACC 200', '2:00 PM').
+classTime('ACC 200', '3:00 PM').
+classTime('ARAB 101', 'On-Demand').
 
 Rules:
-   childOf(X,Y):-childOf(X,Z),marriedTo(Y,Z).
-   marriedTo(X,Y):-marriedTo(Y,X).
 
 Queries:
-   marriedTo(Y,X)?
-   childOf(Y,Y)? 
-   childOf(Y,'Bea')?
-   siblings(A,B,B,A)?
-   siblings(A,C,'George Foreman',A)?
+studentClass('Chase', a)?

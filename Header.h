@@ -12,6 +12,7 @@ public:
 	Header(std::vector<std::string> n);
 	std::string getNameAt(int index);
 	int getSize();
+	void updateName(int index, std::string name);
 };
 
 #endif // !HEADER_H
