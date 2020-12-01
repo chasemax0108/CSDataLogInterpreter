@@ -12,6 +12,10 @@ public:
 	Database() {};
 	void addRelation(Relation r, std::string name);
 	Relation* getRelation(std::string name);
+	int relationCount() {
+		return allRelations.size();
+	}
+	Relation* getRelationByIndex(int i);
 };
 
 #endif // !DATABASE_H

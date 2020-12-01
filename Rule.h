@@ -31,6 +31,9 @@ public:
 	void addHeadPred(Predicate* p) {
 		headPred = p;
 	}
+	Predicate* getHeadPred() {
+		return headPred;
+	}
 	Predicate* predAt(int i) {
 		return allPreds[i];
 	}

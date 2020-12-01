@@ -8,9 +8,9 @@
 
 class Relation {
 private:
-	std::set<Tuple> allTuples;
 	Header head;
 public:
+	std::set<Tuple> allTuples;
 	Relation(Header h, std::set<Tuple> t);
 	Relation(Header h);
 	void addTuple(Tuple t);
@@ -25,7 +25,8 @@ public:
 	Relation project(std::vector<int> indices);
 	Relation rename(std::vector<std::string> names);
 	Relation crossProduct(Relation cross);
-	Relation naturalJoin(Relation join);
+	Relation naturalJoin(Relation &join);
+	Relation unionRelations(Relation &u);
 };
 
 #endif // !RELATION_H

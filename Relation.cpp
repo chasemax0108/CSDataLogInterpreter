@@ -3,6 +3,7 @@
 #include <iterator>
 #include <vector>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -134,36 +135,86 @@ Relation Relation::crossProduct(Relation cross) {
 	return Relation(newHead, newTuples);
 }
 
-Relation Relation::naturalJoin(Relation join) {
-	// Rename the relations to prepare for the cross product and store similar relations in pairs
-	vector<int> equalHeaders;
-	vector<int> newHeaders;
+Relation Relation::naturalJoin(Relation &join) {
+
+	// NEW CODE
+	vector<string> newHead;
+	vector<int> equalHeads;
+	vector<bool> joinHeadMap;
+	int firstHeadSize;
+	int secondHeadSize;
 	for (int i = 0; i < head.getSize(); i++) {
-		for (int j = 0; j < join.headerSize(); j++) {
-			if (head.getNameAt(i) == join.getHeaderAt(j)) {
-				join.updateHeader(j, join.getHeaderAt(j) + "'");
-				equalHeaders.push_back(i);
-				equalHeaders.push_back(j + head.getSize());
-				break;
+		newHead.push_back(head.getNameAt(i));
+	}
+	for (int i = 0; i < join.headerSize(); i++) {
+		bool addme = true;
+		for (unsigned int j = 0; j < newHead.size(); j++) {
+			if (newHead.at(j) == join.getHeaderAt(i)) {
+				equalHeads.push_back(j);
+				equalHeads.push_back(i);
+				addme = false;
+			}
+		}
+		if (addme) {
+			newHead.push_back(join.getHeaderAt(i));
+			joinHeadMap.push_back(true);
+		}
+		else {
+			joinHeadMap.push_back(false);
+		}
+	}
+	firstHeadSize = this->headerSize();
+	secondHeadSize = join.headerSize();
+
+	Relation finalRelation(newHead);
+
+	set<Tuple>::iterator iter1;
+	set<Tuple>::iterator iter2;
+	for (iter1 = this->allTuples.begin(); iter1 != allTuples.end(); iter1++) {
+		for (iter2 = join.allTuples.begin(); iter2 != join.allTuples.end(); iter2++) {
+			bool addme = true;
+			for (unsigned int k = 0; k < equalHeads.size(); k += 2) {
+				if (iter1->getParamAt(equalHeads.at(k)) != iter2->getParamAt(equalHeads.at(k + 1))) {
+					addme = false;
+				}
+			}
+			if (addme) {
+				vector<string> newTupleValues;
+				for (int k = 0; k < firstHeadSize; k++) {
+					newTupleValues.push_back(iter1->getParamAt(k));
+				}
+				for (int k = 0; k < secondHeadSize; k++) {
+					if (joinHeadMap.at(k)) newTupleValues.push_back(iter2->getParamAt(k));
+				}
+				finalRelation.addTuple(newTupleValues);
 			}
 		}
 	}
+	
+	return finalRelation;
+}
 
-	// Run the cross product
-	Relation joinedRelation = this->crossProduct(join);
-	// Select out the equal columns
-	for (int i = 0; i < equalHeaders.size(); i += 2) {
-		joinedRelation = joinedRelation.select(equalHeaders.at(i), equalHeaders.at(i + 1));
+Relation Relation::unionRelations(Relation &u) {
+	vector<string> newHead;
+	set<Tuple> newTuples;
+	set<Tuple>::iterator iter1;
+	set<Tuple>::iterator iter2;
+	for (int i = 0; i < this->head.getSize(); i++) {
+		newHead.push_back(this->head.getNameAt(i));
 	}
-	// Project the new relation without duplicate columns
-	for (int i = 0; i < joinedRelation.headerSize(); i++) {
-		for (int j = 0; j < equalHeaders.size(); j += 2) {
-			if (equalHeaders.at(j + 1) != i) {
-				newHeaders.push_back(i);
+	for (iter1 = this->allTuples.begin(); iter1 != this->allTuples.end(); iter1++) {
+		newTuples.insert(*iter1);
+	}
+	for (iter2 = u.allTuples.begin(); iter2 != u.allTuples.end(); iter2++) {
+		pair<set<Tuple>::iterator, bool> results = newTuples.insert(*iter2);
+		if (results.second) {
+			cout << "  ";
+			cout << head.getNameAt(0) << "=" << results.first->getParamAt(0);
+			for (int i = 1; i < results.first->getSize(); i++) {
+				cout << ", " << head.getNameAt(i) << "=" << results.first->getParamAt(i);
 			}
+			cout << endl;
 		}
 	}
-	joinedRelation = joinedRelation.project(newHeaders);
-
-	return joinedRelation;
+	return Relation(newHead, newTuples);
 }

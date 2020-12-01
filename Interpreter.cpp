@@ -35,12 +35,73 @@ void Interpreter::Run() {
 	}
 
 	// Interpret the Rules (IMPLEMENT)
-	// Step 1: create a natural join function
-	
-	Relation newRelation = database->getRelation("studentClass")->naturalJoin(*(database->getRelation("classTime")));
-	cout << newRelation.toString() << endl;
+	cout << "Rule Evaluation" << endl;
+	// Step 3: create the fixed-point algorithm
+	bool tuplesAdded = true;
+	int totalTuplesBefore = 0;
+	int totalTuplesAfter = 0;
+	int passCount = 0;
+	while (tuplesAdded) {
+		passCount++;
+		tuplesAdded = false;
+		// INSERT EVALUATION CODE HERE
+		for (int i = 0; i < datalog->ruleListSize(); i++) {
+			Rule* workingRule = datalog->ruleAt(i);
+			cout << workingRule->toString() << endl;
+
+			// STEP 1: evaluate all Predicates
+			vector<Relation> processedRelations;
+			for (int j = 0; j < workingRule->predListSize(); j++) {
+				processedRelations.push_back(evaluatePredicate(workingRule->predAt(j)));
+			}
+
+			// STEP 2: natural join all Predicates
+			while (processedRelations.size() > 1) {
+				Relation temp = processedRelations.at(processedRelations.size() - 1);
+				processedRelations.pop_back();
+				Relation temp2 = processedRelations.at(processedRelations.size() - 1);
+				processedRelations.pop_back();
+				processedRelations.push_back(temp2.naturalJoin(temp));
+			}
+			Relation joinedRelation = processedRelations.at(0);
+
+			// STEP 3: project columns from Head Predicate
+			vector<int> newColumns;
+			for (int j = 0; j < workingRule->getHeadPred()->paramListSize(); j++) {
+				for (int k = 0; k < joinedRelation.headerSize(); k++) {
+					if (workingRule->getHeadPred()->paramAt(j)->toString() == joinedRelation.getHeaderAt(k)) {
+						newColumns.push_back(k);
+					}
+				}
+			}
+			Relation projectedRelation = joinedRelation.project(newColumns);
+
+			// STEP 4: rename the columns to match Relation in database
+			vector<string> newNames;
+			Relation* databaseRelation = database->getRelation(workingRule->getHeadPred()->getid());
+			for (int j = 0; j < databaseRelation->headerSize(); j++) {
+				newNames.push_back(databaseRelation->getHeaderAt(j));
+			}
+			Relation renamedRelation = projectedRelation.rename(newNames);
+
+			// STEP 5: union the new relation with the old relation
+			*databaseRelation = databaseRelation->unionRelations(renamedRelation);
+		}
+
+		// Check to see if the database has changed
+		for (int i = 0; i < database->relationCount(); i++) {
+			totalTuplesAfter += database->getRelationByIndex(i)->size();
+		}
+		if (totalTuplesAfter > totalTuplesBefore) tuplesAdded = true;
+		totalTuplesBefore = totalTuplesAfter;
+		totalTuplesAfter = 0;
+	}
+	cout << endl;
+	cout << "Schemes populated after " << passCount << " passes through the Rules." << endl;
+	cout << endl;
 
 	// Interpret the Queries
+	cout << "Query Evaluation" << endl;
 	for (int i = 0; i < datalog->queryListSize(); i++) {
 		stringstream output;
 		Relation processedRelation = evaluatePredicate(datalog->queryAt(i));
