@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <sstream>
+#include "Graph.h"
 
 using namespace std;
 
@@ -34,70 +35,122 @@ void Interpreter::Run() {
 		(database->getRelation(datalog->factAt(i)->getid()))->addTuple(newTuple);
 	}
 
-	// Interpret the Rules (IMPLEMENT)
+	// Rule Evaluation: Determining rule evaluation order
+	// Step 1: Build dependency graph
+
+	vector<Rule*> rulesForGraph;
+	for (int i = 0; i < datalog->ruleListSize(); i++) {
+		rulesForGraph.push_back(datalog->ruleAt(i));
+	}
+	Graph ruleGraph(rulesForGraph);
+
+	// Step 2: Reverse the graph
+	Graph reverseGraph = ruleGraph.returnReverseGraph();
+
+	// Step 3: Run a depth first search on the graph and get the postorder
+	for (int i = 0; i < ruleGraph.adjacencyList.size(); i++) {
+		searchorder.push_back(i);
+	}
+	depthFirstSearchForest(reverseGraph);
+
+	// Step 4: Run a depth first search forest on the original graph using the reversed postorder
+	searchorder.clear();
+	SCCList.clear();
+	for (int i = postorder.size() - 1; i >= 0; i--) {
+		searchorder.push_back(postorder.at(i));
+	}
+	postorder.clear();
+	depthFirstSearchForest(ruleGraph);
+
+	// Step 5: Evaluate the rules based on the Strongly Connected Components that you just calculated
+	cout << ruleGraph.toString() << endl;
 	cout << "Rule Evaluation" << endl;
-	// Step 3: create the fixed-point algorithm
 	bool tuplesAdded = true;
 	int totalTuplesBefore = 0;
 	int totalTuplesAfter = 0;
 	int passCount = 0;
-	while (tuplesAdded) {
-		passCount++;
-		tuplesAdded = false;
-		// INSERT EVALUATION CODE HERE
-		for (int i = 0; i < datalog->ruleListSize(); i++) {
-			Rule* workingRule = datalog->ruleAt(i);
-			cout << workingRule->toString() << endl;
+	for (int i = 0; i < SCCList.size(); i++) {
+		tuplesAdded = true;
+		totalTuplesAfter = 0;
+		passCount = 0;
+		set<int>::iterator SCCiter;
+		SCCiter = SCCList.at(i).begin();
+		cout << "SCC: R" << *SCCiter;
+		for (SCCiter++; SCCiter != SCCList.at(i).end(); SCCiter++) {
+			cout << ",R" << *SCCiter;
+		}
+		cout << endl;
+		while (tuplesAdded) {
+			passCount++;
+			tuplesAdded = false;
+			// INSERT EVALUATION CODE HERE
+			for (SCCiter = SCCList.at(i).begin(); SCCiter != SCCList.at(i).end(); SCCiter++) {
+				Rule* workingRule = datalog->ruleAt(*SCCiter);
+				cout << workingRule->toString() << endl;
 
-			// STEP 1: evaluate all Predicates
-			vector<Relation> processedRelations;
-			for (int j = 0; j < workingRule->predListSize(); j++) {
-				processedRelations.push_back(evaluatePredicate(workingRule->predAt(j)));
-			}
+				// STEP 1: evaluate all Predicates
+				vector<Relation> processedRelations;
+				for (int k = 0; k < workingRule->predListSize(); k++) {
+					processedRelations.push_back(evaluatePredicate(workingRule->predAt(k)));
+				}
 
-			// STEP 2: natural join all Predicates
-			while (processedRelations.size() > 1) {
-				Relation temp = processedRelations.at(processedRelations.size() - 1);
-				processedRelations.pop_back();
-				Relation temp2 = processedRelations.at(processedRelations.size() - 1);
-				processedRelations.pop_back();
-				processedRelations.push_back(temp2.naturalJoin(temp));
-			}
-			Relation joinedRelation = processedRelations.at(0);
+				// STEP 2: natural join all Predicates
+				while (processedRelations.size() > 1) {
+					Relation temp = processedRelations.at(processedRelations.size() - 1);
+					processedRelations.pop_back();
+					Relation temp2 = processedRelations.at(processedRelations.size() - 1);
+					processedRelations.pop_back();
+					processedRelations.push_back(temp2.naturalJoin(temp));
+				}
+				Relation joinedRelation = processedRelations.at(0);
 
-			// STEP 3: project columns from Head Predicate
-			vector<int> newColumns;
-			for (int j = 0; j < workingRule->getHeadPred()->paramListSize(); j++) {
-				for (int k = 0; k < joinedRelation.headerSize(); k++) {
-					if (workingRule->getHeadPred()->paramAt(j)->toString() == joinedRelation.getHeaderAt(k)) {
-						newColumns.push_back(k);
+				// STEP 3: project columns from Head Predicate
+				vector<int> newColumns;
+				for (int k = 0; k < workingRule->getHeadPred()->paramListSize(); k++) {
+					for (int l = 0; l < joinedRelation.headerSize(); l++) {
+						if (workingRule->getHeadPred()->paramAt(k)->toString() == joinedRelation.getHeaderAt(l)) {
+							newColumns.push_back(l);
+						}
 					}
 				}
+				Relation projectedRelation = joinedRelation.project(newColumns);
+
+				// STEP 4: rename the columns to match Relation in database
+				vector<string> newNames;
+				Relation* databaseRelation = database->getRelation(workingRule->getHeadPred()->getid());
+				for (int k = 0; k < databaseRelation->headerSize(); k++) {
+					newNames.push_back(databaseRelation->getHeaderAt(k));
+				}
+				Relation renamedRelation = projectedRelation.rename(newNames);
+
+				// STEP 5: union the new relation with the old relation
+				*databaseRelation = databaseRelation->unionRelations(renamedRelation);
 			}
-			Relation projectedRelation = joinedRelation.project(newColumns);
 
-			// STEP 4: rename the columns to match Relation in database
-			vector<string> newNames;
-			Relation* databaseRelation = database->getRelation(workingRule->getHeadPred()->getid());
-			for (int j = 0; j < databaseRelation->headerSize(); j++) {
-				newNames.push_back(databaseRelation->getHeaderAt(j));
+			// Check to see if the database has changed
+			for (int j = 0; j < database->relationCount(); j++) {
+				totalTuplesAfter += database->getRelationByIndex(j)->size();
 			}
-			Relation renamedRelation = projectedRelation.rename(newNames);
+			if (totalTuplesAfter > totalTuplesBefore) tuplesAdded = true;
+			totalTuplesBefore = totalTuplesAfter;
+			totalTuplesAfter = 0;
 
-			// STEP 5: union the new relation with the old relation
-			*databaseRelation = databaseRelation->unionRelations(renamedRelation);
-		}
+			// Also check to see if the single rule depends on itself
+			if (SCCList.at(i).size() == 1) {
+				SCCiter = SCCList.at(i).begin();
+				if (ruleGraph.adjacencyList.at(*SCCiter).find(*SCCiter) == ruleGraph.adjacencyList.at(*SCCiter).end()) {
+					break;
+				}
+			}
 
-		// Check to see if the database has changed
-		for (int i = 0; i < database->relationCount(); i++) {
-			totalTuplesAfter += database->getRelationByIndex(i)->size();
 		}
-		if (totalTuplesAfter > totalTuplesBefore) tuplesAdded = true;
-		totalTuplesBefore = totalTuplesAfter;
-		totalTuplesAfter = 0;
+		SCCiter = SCCList.at(i).begin();
+		cout << passCount << " passes: R" << *SCCiter;
+		for (SCCiter++; SCCiter != SCCList.at(i).end(); SCCiter++) {
+			cout << ",R" << *SCCiter;
+		}
+		cout << endl;
 	}
-	cout << endl;
-	cout << "Schemes populated after " << passCount << " passes through the Rules." << endl;
 	cout << endl;
 
 	// Interpret the Queries
@@ -169,3 +222,35 @@ Relation Interpreter::evaluatePredicate(Predicate* p) {
 	return workingRelation;
 }
 
+void Interpreter::depthFirstSearchForest(Graph g) {
+	marked.clear();
+	map<int, set<int>>::iterator graphIter;
+	for (int i = 0; i < searchorder.size(); i++) {
+		for (graphIter = g.adjacencyList.begin(); graphIter != g.adjacencyList.end(); graphIter++) {
+			if (searchorder.at(i) == graphIter->first) {
+				if (marked.find(graphIter->first) == marked.end()) {
+					connectedComponents.clear();
+					depthFirstSearch(g, graphIter->first);
+					SCCList.push_back(connectedComponents);
+				}
+			}
+		}
+	}
+}
+
+void Interpreter::depthFirstSearch(Graph g, int vertex) {
+	marked.insert(vertex);
+	connectedComponents.insert(vertex);
+	set<int> adjacentVertices = g.adjacencyList.find(vertex)->second;
+	set<int>::iterator iter;
+	for (int i = 0; i < searchorder.size(); i++) {
+		for (iter = adjacentVertices.begin(); iter != adjacentVertices.end(); iter++) {
+			if (searchorder.at(i) == *iter) {
+				if (marked.find(*iter) == marked.end()) {
+					depthFirstSearch(g, *iter);
+				}
+			}
+		}
+	}
+	postorder.push_back(vertex);
+}

@@ -145,6 +145,7 @@
     <ClCompile Include="DataLogProgram.cpp" />
     <ClCompile Include="ErrorAutomaton.cpp" />
     <ClCompile Include="Expression.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Header.cpp" />
     <ClCompile Include="IDAutomaton.cpp" />
     <ClCompile Include="Interpreter.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="DataLogTypes.h" />
     <ClInclude Include="ErrorAutomaton.h" />
     <ClInclude Include="Expression.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="IDAutomaton.h" />
     <ClInclude Include="Interpreter.h" />
